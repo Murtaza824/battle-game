@@ -1,0 +1,129 @@
+import random, os, time
+
+def rollDice():
+  return random.randint(1,6)
+
+def character():
+  name = input("Name Your Legend: ")
+  type = input("Character Type (Human, Elf, Wizard, Orc, Imp): ")
+  return name
+
+
+def characterHealth():
+  dice1 = random.randint(1, 6)
+  dice2 = random.randint(1, 12)
+
+  return ((dice1 * dice2) / 2) + 10
+
+
+def characterStrength():
+  dice1 = random.randint(1, 6)
+  dice2 = random.randint(1, 12)
+
+  return ((dice1 * dice2) / 2) + 12
+
+
+print("⚔️ CHARACTER BUILDER ⚔️")
+print()
+name1 = input("Name Your Legend: ")
+type1 = input("Character Type (Human, Elf, Wizard, Orc, Imp): ")
+print()
+print(name1)
+health1 = characterHealth()
+strength1 = characterStrength()
+print("HEALTH:", health1)
+print("STRENGTH:", strength1)
+print()
+print("Who are they battling?")
+print()
+name2 = input("Name Your Legend: ")
+type2 = input("Character Type (Human, Elf, Wizard, Orc, Imp): ")
+print()
+print(name2)
+health2 = characterHealth()
+strength2 = characterStrength()
+print("HEALTH:", health2)
+print("STRENGTH:", strength2)
+time.sleep(2)
+os.system("clear")
+
+round = 0
+
+while True:
+  round+= 1
+  print("⚔️ BATTLE TIME ⚔️")
+  print()
+
+  
+  character1 = rollDice()
+  character2 = rollDice()
+  
+  if character1 > character2:
+    if strength1 > strength2:
+      attack = (strength1 - strength2) + 1
+    elif strength2 > strength1:
+      attack = (strength2 - strength1) + 1
+
+    health2 = health2 - attack
+
+    print(name1,"wins round",round)
+    print(name1,"takes a hit, with",attack,"damage")
+    print()
+    print(name1)
+    print("HEALTH: ",health1)
+    print()
+    print(name2)
+    print("HEALTH: ",health2)
+    print()
+
+    if health1 <= 0:
+      print("Oh no",name1,"has lost!")
+      print()
+      print(name2,"destroyed",name1,"in",round,"rounds")
+      break
+    elif health2 <= 0:
+      print("Oh no",name2,"has lost!")
+      print()
+      print(name1,"destroyed",name2,"in",round,"rounds")
+      break
+    
+    time.sleep(3)
+    os.system("clear")
+    
+  elif character2 > character1:
+    if strength1 > strength2:
+      attack = (strength1 - strength2) + 1
+    elif strength2 > strength1:
+      attack = (strength2 - strength1) + 1
+
+    health1 = health1 - attack
+
+    print(name2,"wins round",round)
+    print(name2,"takes a hit, with",attack,"damage")
+    print()
+    print(name1)
+    print("HEALTH: ",health1)
+    print()
+    print(name2)
+    print("HEALTH: ",health2)
+    print()
+
+    if health1 <= 0:
+      print("Oh no",name1,"has lost!")
+      print()
+      print(name2,"destroyed",name1,"in",round,"rounds")
+      break
+    elif health2 <= 0:
+      print("Oh no",name2,"has lost!")
+      print()
+      print(name1,"destroyed",name2,"in",round,"rounds")
+      break
+  
+    time.sleep(3)
+    os.system("clear")
+    
+  else:
+    time.sleep(3)
+    os.system("clear")
+    continue
+    
